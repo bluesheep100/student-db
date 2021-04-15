@@ -15,38 +15,16 @@
 <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true"
       data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
 <!-- Page wrapper start -->
-<div class="page-wrapper with-navbar with-sidebar" data-sidebar-type="overlayed-sm-and-down">
-    <nav class="navbar">
-        <a class="navbar-brand" href="/">ElevDB</a>
+<div class="page-wrapper @auth with-navbar with-sidebar @endauth" data-sidebar-type="overlayed-sm-and-down">
+    @auth
+        @include('layouts.navbar')
 
-        <div class="ml-auto">
-            <form action="" class="form-inline" method="post">
-                <button class="btn btn-danger">Log ud</button>
-            </form>
-        </div>
-    </nav>
-    <!-- Navbar end -->
+        @include('layouts.sidebar')
+    @endauth
 
-    <!-- Sidebar overlay -->
-    <div class="sidebar-overlay" onclick="halfmoon.toggleSidebar()"></div>
-
-    <!-- Sidebar start -->
-    <div class="sidebar">
-
-    </div>
-    <!-- Sidebar end -->
-
-    <!-- Content wrapper start -->
     <div class="content-wrapper">
-        <!--
-          Add your page's main content here
-          Examples:
-          1. https://www.gethalfmoon.com/docs/content-and-cards/#building-a-page
-          2. https://www.gethalfmoon.com/docs/grid-system/#building-a-dashboard
-        -->
+        @yield('content')
     </div>
-    <!-- Content wrapper end -->
-
 </div>
 <!-- Page wrapper end -->
 
