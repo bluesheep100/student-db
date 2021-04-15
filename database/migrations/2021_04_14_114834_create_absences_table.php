@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Student;
+use App\Models\CheckinCard;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +16,7 @@ class CreateAbsencesTable extends Migration
     {
         Schema::create('absences', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Student::class);
+            $table->foreignIdFor(CheckinCard::class);
             $table->enum('type', ['vacation', 'sick', 'homework', 'time_off', 'school', 'missing', 'other']);
             $table->timestamps();
         });
