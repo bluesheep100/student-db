@@ -18,11 +18,14 @@ class CreateStudentsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('street_name')->nullable();
-            $table->string('street_number')->nullable();
-            $table->string('zip_code')->nullable();
+            $table->string('phone_number');
+            $table->string('address');
+            $table->string('zip_code');
+            $table->date('birthday');
+            $table->text('portrait')->default('/public/images/default.png');
             $table->unsignedInteger('vacation_days')->default(0);
             $table->integer('current_flex')->default(0);
+            $table->longtext('meeting_times')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

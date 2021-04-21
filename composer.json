@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "bluesheep100/student-db",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {

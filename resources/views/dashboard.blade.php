@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('modals')
+    @include('modals.create_student')
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

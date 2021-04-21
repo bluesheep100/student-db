@@ -12,6 +12,8 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [StudentController::class, 'index'])->name('dashboard');
+
+    Route::post('/students/create', [StudentController::class, 'store'])->name('student-create');
 });
 
 Auth::routes();

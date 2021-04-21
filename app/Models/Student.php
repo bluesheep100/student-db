@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Interfaces\Validatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -24,8 +25,33 @@ use Illuminate\Database\Eloquent\Relations\Relation;
  * @method static \Illuminate\Database\Eloquent\Builder|Student wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Student whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $email
+ * @property string $phone_number
+ * @property string $address
+ * @property string $zip_code
+ * @property string $birthday
+ * @property string $portrait
+ * @property int $vacation_days
+ * @property int $current_flex
+ * @property string|null $meeting_times
+ * @property string|null $remember_token
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Absence[] $absences
+ * @property-read int|null $absences_count
+ * @property-read \App\Models\CheckinCard|null $card
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereBirthday($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereCurrentFlex($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereMeetingTimes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student wherePhoneNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student wherePortrait($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereVacationDays($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Student whereZipCode($value)
  */
-class Student extends Model
+class Student extends Model implements Validatable
 {
     use HasFactory;
 
@@ -38,6 +64,15 @@ class Student extends Model
 
     public function absences(): Relation
     {
-        return $this->hasManyThrough(Absence::class, CheckinCard::class);
+        return $this->hasMany(Absence::class);
+    }
+
+    public static function validationRules(): array
+    {
+        return [
+            'name' => ['required'],
+            'checkin_card_id' => ['length:10'],
+            'birthday' => ['required', 'date'],
+        ];
     }
 }
